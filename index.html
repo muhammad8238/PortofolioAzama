@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AM7 Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        /* Base Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0f20;
+            color: white;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Moving Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(270deg, #0a0f20, #1a235a, #0f60e8, #8000ff);
+            background-size: 400% 400%;
+            animation: moveBackground 12s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        nav ul li a, nav ul li strong {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Home Section */
+        #home {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: glowText 2s infinite alternate;
+        }
+
+        @keyframes glowText {
+            0% { text-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff; }
+            100% { text-shadow: 0 0 30px #00e5ff, 0 0 40px #00e5ff; }
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-btn {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            color: #0a0f20;
+            background: #00e5ff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 229, 255, 0.5);
+        }
+
+        /* About Section */
+        #about {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 80px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        #about .chart {
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            background: #111;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(0, 255, 255, 1); }
+        }
+
+        /* Services Section */
+        #services {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        #services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-item {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .service-item img {
+            width: 100%;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .service-item h3 {
+            color: #00e5ff;
+            margin-bottom: 10px;
+        }
+
+        .service-item p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        #contact a {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: #0a0f20;
+            background: #00e5ff;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #contact a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 229, 255, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #00e5ff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><strong>AM7 Portfolio</strong></li>
+        </ul>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h1>Azama Matulezi Portfolio</h1>
+        <p>if i play i play to win.</p>
+        <button class="hero-btn">scroll</button>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            I am a dynamic and experienced entrepreneur with a proven track record of success across diverse industries, including fashion, mining, real estate, logistics, and beyond. My passion lies in building sustainable solutions that not only drive business growth but also create lasting value for stakeholders, communities, and the environment. Over the years, I have honed my ability to navigate complex challenges, innovate within highly competitive markets, and lead teams toward achieving impactful results. With a commitment to excellence and a vision for long-term success, I strive to create businesses that are both resilient and transformative in an ever-changing global landscape
+        </p>
+        <div class="chart">Dynamic Chart experienced entrepreneur </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services-container">
+            <div class="service-item">
+                <img src="https://c8.alamy.com/comp/R0ATGK/legal-advice-service-concept-with-lawyer-working-for-justice-law-business-legislation-and-paperwork-expert-consulting-icons-with-person-in-backgro-R0ATGK.jpg" alt="Business and Legal Consulting">
+                <h3>Business and Legal Consulting</h3>
+                <p>We provide tailored business strategies and legal solutions to ensure compliance, manage contracts, and resolve disputes effectively.</p>
+            </div>
+            <div class="service-item">
+                <img src="https://sika.scene7.com/is/image/sika/glo-shotcrete-01:1-1?wid=1200&hei=1200&fit=crop%2C1" alt="Mining Solutions">
+                <h3>Mining Solutions</h3>
+                <p>Our services include sustainable mining operations, feasibility studies, and regulatory compliance to optimize your mining projects.</p>
+            </div>
+            <div class="service-item">
+                <img src="https://www.build-review.com/wp-content/uploads/2021/07/Real-Estate-Investment.jpg" alt="Real Estate Development and Investment">
+                <h3>Real Estate Development and Investment</h3>
+                <p>We offer expert advice on property development, portfolio management, and market analysis to maximize real estate value.</p>
+            </div>
+            <div class="service-item">
+                <img src="https://unityeducationhub.com/wp-content/uploads/2021/04/logistics-and-supply-chain-management.jpg" alt="Logistics and Supply Chain Management">
+                <h3>Logistics and Supply Chain Management</h3>
+                <p>We deliver end-to-end logistics solutions, improving efficiency and optimizing supply chain operations for seamless business flow.</p>
+            </div>
+            <div class="service-item">
+                <img src="https://s4.bukalapak.com/bukalapak-kontenz-production/content_attachments/websites/4/91609/original/Pengertian_Ekspor.jpeg" alt="Export and International Trade Services">
+                <h3>Export and International Trade Services</h3>
+                <p>We facilitate market entry, ensure trade compliance, and manage export documentation for smooth international transactions.</p>
+            </div>
+            <div class="service-item">
+                <img src="https://openinfluence.com/wp-content/uploads/Fashion-Collage.jpg" alt="Fashion and Lifestyle Brand Development">
+                <h3>Fashion and Lifestyle Brand Development</h3>
+                <p>We design exclusive fashion collections, provide branding strategies, and offer personal styling to build unique, sustainable brands.</p>
+            </div>
+            <div class="service-item">
+                <img src="https://sidwinhealthcare.com/wp-content/uploads/2022/07/healthcare_slider1.jpeg" alt="Healthcare and Wellness Solutions">
+                <h3>Healthcare and Wellness Solutions</h3>
+                <p>We support clinic establishment, management, and wellness programs to enhance community health and operational excellence.</p>
+            </div>
+            <div class="service-item">
+                <img src="https://i0.wp.com/www.firewiseconsulting.com/wp-content/uploads/businessman-4608276_1920.jpg?fit=1920%2C1280&ssl=1" alt="Training and Capacity Building">
+                <h3>Training and Capacity Building</h3>
+                <p>We offer leadership workshops, skill development programs, and entrepreneurship coaching to empower individuals and teams.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Get in touch with us directly via WhatsApp!</p>
+        <a href="https://wa.me/+67322987287" target="_blank">Message Us +67322987287</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2019 AM7 Portfolio | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service -BRUNEI DARUSSALAM</a></p>
+    </footer>
+</body>
+</html>
